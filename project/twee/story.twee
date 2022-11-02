@@ -1,0 +1,10 @@
+:: StoryTitle
+The Informant
+
+:: Start
+@@#hello;Hello World!@@
+
+[[Next Place->Somewhere]]
+
+:: Somewhere
+Somewhere else
