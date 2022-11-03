@@ -1,19 +1,18 @@
 try {
     macros['ticktime'] = {
         handler: function(place, macroName, params, parser) {
-        State.variables.time += 1;
-        State.variables.timer.ticktime();
-        setup.people = [State.variables.mayor, State.variables.guard1];
-        setup.guards = [State.variables.guard1];
-        var moveFunction = this.movePerson;
-        setup.people.forEach(function callback(person){
-            moveFunction(place, person);
-        });
+            State.variables.time += 1;
+            State.variables.timer.ticktime();
+            var moveFunction = this.movePerson;
+            var characters = [setup.characters.guard];
+            characters.forEach(function callback(person){
+                moveFunction(place, person);
+            });
         },
         movePerson : function(place, person){
-        person.updateLocation(State.variables.time);
-        person.updateAction(State.variables.time);
-        //new Wikifier(place, person.name + " is " + person.action + " in " + person.location + "<br>");
+            person.updateLocation(State.variables.time);
+            person.updateAction(State.variables.time);
+            //new Wikifier(place, person.name + " is " + person.action + " in " + person.location + "<br>");
         }
     };
 } catch(e) {
@@ -30,25 +29,26 @@ try {
             let visiblePeople = [];
             let visibleStrings = [];
             let finalString = "";
-            setup.people.forEach(function callback2(person) {
-            if (location == person.location){
-                visiblePeople.push(person);
-            }
+            var characters = [setup.characters.guard];
+            characters.forEach(function callback2(person) {
+                if (location == person.location){
+                    visiblePeople.push(person);
+                }
             });
             visiblePeople.forEach(function callback3(visiblePerson){
-            visibleStrings.push(visiblePerson.getSeenActionDescription());
+                visibleStrings.push(visiblePerson.getSeenActionDescription());
             });
             finalString = concatCommasAnd(visibleStrings);
             if(finalString == ""){
-            return;
+                return;
             }
             new Wikifier(place, "You see " + finalString + " in " + location + ".<br>");
-            visiblePeople.forEach(function callback3(visiblePerson){
-            let firstSeenText = visiblePerson.firstSeen();
-            if(firstSeenText != ""){
-                new Wikifier(place, firstSeenText + "<br>");
-            }
-            });
+            // visiblePeople.forEach(function callback3(visiblePerson){
+            //     let firstSeenText = visiblePerson.firstSeen();
+            //     if(firstSeenText != ""){
+            //         new Wikifier(place, firstSeenText + "<br>");
+            //     }
+            // });
         });
         }
     };
@@ -63,20 +63,21 @@ try {
             return;
         }
         params.forEach(function callback1(location) {
-            let visiblePeople = [];
-            let visibleStrings = [];
+            let audiblePeople = [];
+            let audibleStrings = [];
             let finalString = "";
-            setup.guards.forEach(function callback2(person) {
-            if (location == person.location){
-                visiblePeople.push(person);
-            }
+            var characters = [setup.characters.guard];
+            characters.forEach(function callback2(person) {
+                if (location == person.location){
+                    audiblePeople.push(person);
+                }
             });
-            visiblePeople.forEach(function callback3(visiblePerson){
-            visibleStrings.push(visiblePerson.getHeardActionDescription());
+            audiblePeople.forEach(function callback3(audiblePerson){
+                audibleStrings.push(audiblePerson.getHeardActionDescription());
             });
-            finalString = concatCommasAnd(visibleStrings);
+            finalString = concatCommasAnd(audibleStrings);
             if(finalString == ""){
-            return;
+               return;
             }
             new Wikifier(place, "You hear " + finalString + " in " + location + ".<br>");
         });
