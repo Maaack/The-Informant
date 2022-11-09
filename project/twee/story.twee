@@ -1,3 +1,31 @@
+:: StoryInit
+<<set $can_act_freely to true>>
+<<set $ten_second_counter to 0>>
+<<set $pockets_checked to false>>
+<<set $lockpick_count to 3>>
+<<set $picking_lock to false>>
+<<set $picking_lock_time to 0>>
+<<set $picking_lock_target to 0>>
+<<set $pocket_watch_reset_time to 60>>
+<<set $pocket_watch_ten_seconds to $pocket_watch_reset_time>>
+<<set $pocket_watch_set to false>>
+<<set $mayor_position to "Mayors Office Interior Entryway" >>
+<<set $mayor_action to "">>
+<<set $guard_position to "Gone" >>
+<<set $guard_next_position to "Gone" >>
+<<set $guard_facing to "None" >>
+<<set $guard_action to "">>
+<<set $guard_after_first_seen to "The guard">>
+<<set $guard_name to "A guard">>
+<<set $front_door_locked to false>>
+<<set $back_door_locked to true>>
+<<set $study_door_locked to true>>
+<<set $guard_spots_actions to []>>
+<<set $guard_spots_positions to []>>
+<<set $has_evidence to false>>
+<<set $has_front_door_key to false>>
+<<set $has_study_door_key to false>>
+
 :: StoryTitle {"position":"0,200"}
 The Informant
 
@@ -93,3 +121,30 @@ You hear heavy footsteps somewhere in the distance.
 @@#default-actions;\
 [[Wait for ten seconds->Wait]]
 [[Check your pockets->Inventory]]@@
+
+
+:: Wait
+<h2>Waiting...</h2>
+You wait 10 seconds.
+<<return ">>>">>
+<<set _previous to previous()>>
+<<timed 1s>><<goto _previous>><</timed>>
+
+
+:: Inventory
+<h2>Inventory</h2>
+<<set $pockets_checked to true>>\
+You check your belongings and find:
+A pocket watch. It is currently <<if $timer.isSet is false>>not <</if>>ticking. It reads  <<print Math.floor($timer.countdownTime/6)>>:<<print $timer.countdownTime%6>>0.
+<<if $pocket_watch_set>>\
+<<linkreplace "Stop the timer">>Timer stopped.<<set $timer.isSet=false>><</linkreplace>>
+<<else>>\
+<<linkreplace "Start the timer">>Timer started.<<set $timer.isSet=true>><</linkreplace>>
+<<linkreplace "Reset the timer">>Timer reset.<<set $pocket_watch_ten_seconds=$pocket_watch_reset_time>><</linkreplace>>
+<</if>>\
+Night guard's patrol route map.
+Inconspicuous mission note.
+<<linkreplace "Read note">>\
+Gather evidence of corruption from the Mayor's Study.<</linkreplace>>
+$lockpick_count lockpick(s).
+<<return "Go Back">>
