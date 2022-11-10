@@ -1,4 +1,4 @@
-:: StoryInit
+:: StoryInit {"position":"0,100"}
 <<set $can_act_freely to true>>
 <<set $ten_second_counter to 0>>
 <<set $pockets_checked to false>>
@@ -26,10 +26,10 @@
 <<set $has_front_door_key to false>>
 <<set $has_study_door_key to false>>
 
-:: StoryTitle {"position":"0,200"}
+:: StoryTitle {"position":"100,200"}
 The Informant
 
-:: StoryCaption {"position":"0,100"}
+:: StoryCaption {"position":"0,200"}
 Created by <span id="author">Maaack</span>
 <<if $pockets_checked>>
 Timer: <<print Math.floor($timer.countdownTime/6)>>:<<print $timer.countdownTime%6>>0 
@@ -121,7 +121,7 @@ You hear heavy footsteps somewhere in the distance.
 [[Check your pockets->Inventory]]@@
 
 
-:: Wait
+:: Wait {"position":"100,300"}
 <h2>Waiting...</h2>
 You wait 10 seconds.
 <<return ">>>">>
@@ -129,7 +129,7 @@ You wait 10 seconds.
 <<timed 1s>><<goto _previous>><</timed>>
 
 
-:: Inventory
+:: Inventory {"position":"200,300"}
 <h2>Inventory</h2>
 <<set $pockets_checked to true>>\
 You check your belongings and find:
