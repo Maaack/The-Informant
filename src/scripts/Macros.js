@@ -20,36 +20,34 @@ try {
 };
     
 try {
-    macros['see'] = {
+    macros['see'] = {        
         handler: function(place, macroName, params, parser) {
-        if(params.length == 0) {
-            return;
-        }
-        params.forEach(function callback1(location) {
-            let visiblePeople = [];
-            let visibleStrings = [];
-            let finalString = "";
-            var characters = [setup.characters.guard];
-            characters.forEach(function callback2(person) {
-                if (location == person.location){
-                    visiblePeople.push(person);
-                }
-            });
-            visiblePeople.forEach(function callback3(visiblePerson){
-                visibleStrings.push(visiblePerson.getSeenActionDescription());
-            });
-            finalString = concatCommasAnd(visibleStrings);
-            if(finalString == ""){
+            if(params.length == 0) {
                 return;
             }
-            new Wikifier(place, "You see " + finalString + " in " + location + ".<br>");
-            // visiblePeople.forEach(function callback3(visiblePerson){
-            //     let firstSeenText = visiblePerson.firstSeen();
-            //     if(firstSeenText != ""){
-            //         new Wikifier(place, firstSeenText + "<br>");
-            //     }
-            // });
-        });
+
+            params.forEach(function callback1(location) {
+                let visibleCharacters = [];
+                let visibleStrings = [];
+                let finalString = "";
+                var characters = [setup.characters.guard];
+                characters.forEach(function callback2(person) {
+                    if (person.isLocated(location)){
+                        visibleStrings.push(person.seenString());
+                        visibleCharacters.push(person.seenIdentity());
+                    }
+                });
+                finalString = concatCommasAnd(visibleStrings);
+                if(finalString == ""){
+                    return;
+                }
+                new Wikifier(place, "You see " + finalString + " in " + location + ".<br>");
+                visibleCharacters.forEach(function callback3(visibleCharacter) {
+                    if (visibleCharacter != ""){
+                        new Wikifier(place, visibleCharacter + "<br>");
+                    }
+                });
+            });
         }
     };
 } catch(e) {
@@ -59,28 +57,31 @@ try {
 try {
     macros['hear'] = {
         handler: function(place, macroName, params, parser) {
-        if(params.length == 0) {
-            return;
-        }
-        params.forEach(function callback1(location) {
-            let audiblePeople = [];
-            let audibleStrings = [];
-            let finalString = "";
-            var characters = [setup.characters.guard];
-            characters.forEach(function callback2(person) {
-                if (location == person.location){
-                    audiblePeople.push(person);
-                }
-            });
-            audiblePeople.forEach(function callback3(audiblePerson){
-                audibleStrings.push(audiblePerson.getHeardActionDescription());
-            });
-            finalString = concatCommasAnd(audibleStrings);
-            if(finalString == ""){
-               return;
+            if(params.length == 0) {
+                return;
             }
-            new Wikifier(place, "You hear " + finalString + " in " + location + ".<br>");
-        });
+            params.forEach(function callback1(location) {
+                let audibleCharacters = [];
+                let audibleStrings = [];
+                let finalString = "";
+                var characters = [setup.characters.guard];
+                characters.forEach(function callback2(person) {
+                    if (person.isLocated(location)){
+                        audibleStrings.push(person.heardString());
+                        audibleCharacters.push(person.heardIdentity());
+                    }
+                });
+                finalString = concatCommasAnd(audibleStrings);
+                if(finalString == ""){
+                return;
+                }
+                new Wikifier(place, "You hear " + finalString + " in " + location + ".<br>");
+                audibleCharacters.forEach(function callback3(audibleCharacter) {
+                    if (audibleCharacter != ""){
+                        new Wikifier(place, audibleCharacter + "<br>");
+                    }
+                });
+            });
         }
     };
 } catch(e) {

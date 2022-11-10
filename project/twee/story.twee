@@ -71,9 +71,7 @@ You watch the mayor's office front door in anticipation.
 
 :: Nearby Alley Facing Junction {"position":"350,200"}
 <h2>Dark Alley - Facing Alley Junction</h2>
-<<include "TurnCounter">>\
-<<set $guard_spots_actions to []>>\
-<<set $guard_spots_positions to []>>\
+<<ticktime>>\
 <<if previous() is "Nearby Alley Facing Street">>\
 You look over your shoulder, to the alley junction behind you.
 
