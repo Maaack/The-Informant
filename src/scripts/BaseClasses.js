@@ -52,7 +52,7 @@ class Identity {
 }
 
 class Action {
-  constructor(visibleText, audibleText, audibleFarText) {
+  constructor(visibleText, audibleText = "", audibleFarText = "") {
     this.visibleText = visibleText;
     this.audibleText = audibleText;
     this.audibleFarText = audibleFarText;

@@ -4,8 +4,7 @@ try {
             State.variables.time += 1;
             State.variables.timer.ticktime();
             var moveFunction = this.movePerson;
-            var characters = [setup.characters.guard];
-            characters.forEach(function callback(person){
+            setup.characterArray.forEach(function callback(person){
                 moveFunction(place, person);
             });
         },
@@ -30,8 +29,7 @@ try {
                 let visibleCharacters = [];
                 let visibleStrings = [];
                 let finalString = "";
-                var characters = [setup.characters.guard];
-                characters.forEach(function callback2(person) {
+                setup.characterArray.forEach(function callback2(person) {
                     if (person.isLocated(location)){
                         visibleStrings.push(person.seenString());
                         visibleCharacters.push(person.seenIdentity());
@@ -64,8 +62,7 @@ try {
                 let audibleCharacters = [];
                 let audibleStrings = [];
                 let finalString = "";
-                var characters = [setup.characters.guard];
-                characters.forEach(function callback2(person) {
+                setup.characterArray.forEach(function callback2(person) {
                     if (person.isLocated(location)){
                         audibleStrings.push(person.heardString());
                         audibleCharacters.push(person.heardIdentity());

@@ -13,10 +13,10 @@ setup.routes.nightGuardPatrol = {
     4: "Market Street",
     5: "Main St and Market St",
     9: "Main Street",
-    11: "Mayors Office Exterior Front",
-    12: "Mayors Office Exterior Courtyard",
-    13: "Mayors Office Exterior Back",
-    14: "Mayors Office Exterior Courtyard",
+    11: "Governors Office Exterior Front",
+    12: "Governors Office Exterior Courtyard",
+    13: "Governors Office Exterior Back",
+    14: "Governors Office Exterior Courtyard",
     15: "Main Street",
     17: "Main St and First",
     20: "First Steet",
@@ -24,16 +24,20 @@ setup.routes.nightGuardPatrol = {
 };
 
 setup.routes.governorRoute = {    
-    1: "Mayors Office Interior Entryway",
-    4: "Mayors Office Exterior Front",
+    1: "Governors Office Interior Entryway",
+    4: "Governors Office Exterior Front",
     6: "Main Street",
     8: "Main St and Market St",
     22: "Gone"
 };
 
 setup.actions = {
+    leavingFrontDoor : new Action("leaving through the front door", "opening a door"),
+    lockingFrontDoor : new Action("locking the front door behind him", "handling keys and door lock"),
+    walkingTowardMarket : new Action("walking toward Market St."),
     patrol : new Action("patrolling", "making regular metal clanging sounds", "clanging metal"),
     greetingGovernor : new Action("bidding the governor a good evening. The governor doesn't reply", "bidding the governor a good evening. The governor doesn't reply", "says something to the governor."),
+
 };
 
 setup.actionOrders.nightGuardActions = {
@@ -42,9 +46,15 @@ setup.actionOrders.nightGuardActions = {
     9: setup.actions.patrol,
 };
 
+setup.actionOrders.governorActions = {
+    4: setup.actions.leavingFrontDoor,
+    5: setup.actions.lockingFrontDoor,
+    6: setup.actions.walkingTowardMarket,
+};
 
 setup.characters.guard = new Character(setup.identities.guard, setup.routes.nightGuardPatrol, setup.actionOrders.nightGuardActions);
-setup.characters.governor = new Character(setup.identities.governor, setup.routes.governorRoute, {});
+setup.characters.governor = new Character(setup.identities.governor, setup.routes.governorRoute, setup.actionOrders.governorActions);
+setup.characterArray = [setup.characters.governor, setup.characters.guard]
 
 State.variables.guard = setup.characters.guard
-State.variables.mayor = setup.characters.governor
+State.variables.governor = setup.characters.governor

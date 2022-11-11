@@ -1,0 +1,68 @@
+:: Main Street {"position":"500,0"}
+<h2>Main Street</h2>
+<<ticktime>>\
+@@#area-description;\
+You are in Main Street, in view of the intersection with Market on one side and First on the other. The governor's office front entrance faces the street.@@
+<<see  "Governors Office Exterior Front" "Main Street" "Main St and Market St" "Governors Office Exterior Courtyard" "Main St and First">>\
+<<if $governor.isLocated("Governors Office Interior Entryway")>>\
+The governor is still inside the Governor's Office entryway.
+<<elseif $governor.isLocated(passage())>>\
+The governor sees you standing in the street and eyes you suspiciously as he leaves.
+<</if>>\
+<<if $guard.isLocated("Market Street")>>\
+You hear heavy footsteps somewhere in the distance.
+<</if>>\
+
+<<if $can_act_freely>>\
+[[Return to the alley->Nearby Alley Facing Junction]]
+<<include "Default Actions">>
+<</if>>
+
+
+
+
+:: Nearby Alley Facing Street {"position":"350,0"}
+<h2>Dark Alley - Facing Main Street</h2>
+<<ticktime>>\
+@@#area-description;\
+You see part of Main Street and the front entrance of the Governor's Office.@@
+<<see "Governors Office Exterior Front" "Main Street" "Governors Office Exterior Courtyard" "Main St and First">>\
+<<hear "Main St and Market St" "Market Street" "Far Market Street">>\
+<<if $time==1>>\
+The last candle in the entryway window just went out. The governor should be leaving in the next 30-60 seconds.
+<<elseif $governor.isLocated("Governors Office Interior Entryway")>>\
+You watch the governor's office front door in anticipation.
+<</if>>\
+
+[[Check behind you->Nearby Alley Facing Junction]]
+[[Go into the street->Main Street]]
+<<include "Default Actions">>
+
+
+
+
+:: Nearby Alley Facing Junction {"position":"350,200"}
+<h2>Dark Alley - Facing Alley Junction</h2>
+<<ticktime>>\
+<<if previous() is "Nearby Alley Facing Street">>\
+You look over your shoulder, to the alley junction behind you.
+
+<</if>>\
+@@#area-description;\
+The alley is dark and a bit smelly. You are well hidden here.@@
+<<if $guard_position == "Main St and Market St" || $guard_position == "Far Market Street">>\
+You hear heavy footsteps in the distance.
+<<elseif $guard_position == "Market Street">>\
+The shadow of a figure with a spear passes over the wall at the junction. You hear distant heavy footsteps going down Market Street toward Main Street. Must be <<= $guard_name.toLowerCase()>> on patrol.
+<<include [[Guard Seen]] >>\
+His patrol doesn't take him through this alley.
+<<elseif $guard_position == "Main Street">>\
+You hear heavy footsteps coming from Main Street behind you!
+<</if>>\
+
+<<if $has_evidence>>\
+[[Make your escape!->Success]]
+<</if>>\
+[[Turn back to the street->Nearby Alley Facing Street]]
+<<include "Default Actions">>
+

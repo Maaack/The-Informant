@@ -9,8 +9,8 @@
 <<set $pocket_watch_reset_time to 60>>
 <<set $pocket_watch_ten_seconds to $pocket_watch_reset_time>>
 <<set $pocket_watch_set to false>>
-<<set $mayor_position to "Mayors Office Interior Entryway" >>
-<<set $mayor_action to "">>
+<<set $governor_position to "Governors Office Interior Entryway" >>
+<<set $governor_action to "">>
 <<set $guard_position to "Gone" >>
 <<set $guard_next_position to "Gone" >>
 <<set $guard_facing to "None" >>
@@ -46,73 +46,9 @@ Study door key
 
 :: Start {"position":"200,0"}
 <h2>Dark Alley - Facing Main Street</h2>
-A shadow passes over the window of the entry way to the mayor's office.
+A shadow passes over the window of the entry way to the governor's office.
 
 [[It shouldn't be long now...->Nearby Alley Facing Street]]
-
-
-:: Nearby Alley Facing Street {"position":"350,0"}
-<h2>Dark Alley - Facing Main Street</h2>
-<<ticktime>>\
-@@#area-description;\
-You see part of Main Street and the front entrance of the Mayor's Office.@@
-<<see "Mayors Office Exterior Front" "Main Street" "Mayors Office Exterior Courtyard" "Main St and First">>\
-<<hear "Main St and Market St" "Market Street" "Far Market Street">>\
-<<if $time==1>>\
-The last candle in the entryway window just went out. The mayor should be leaving in the next 30-60 seconds.
-<<elseif $mayor.isLocated("Mayors Office Interior Entryway")>>\
-You watch the mayor's office front door in anticipation.
-<</if>>\
-
-[[Check behind you->Nearby Alley Facing Junction]]
-[[Go into the street->Main Street]]
-<<include "Default Actions">>
-
-
-:: Nearby Alley Facing Junction {"position":"350,200"}
-<h2>Dark Alley - Facing Alley Junction</h2>
-<<ticktime>>\
-<<if previous() is "Nearby Alley Facing Street">>\
-You look over your shoulder, to the alley junction behind you.
-
-<</if>>\
-@@#area-description;\
-The alley is dark and a bit smelly. You are well hidden here.@@
-<<if $guard_position == "Main St and Market St" || $guard_position == "Far Market Street">>\
-You hear heavy footsteps in the distance.
-<<elseif $guard_position == "Market Street">>\
-The shadow of a figure with a spear passes over the wall at the junction. You hear distant heavy footsteps going down Market Street toward Main Street. Must be <<= $guard_name.toLowerCase()>> on patrol.
-<<include [[Guard Seen]] >>\
-His patrol doesn't take him through this alley.
-<<elseif $guard_position == "Main Street">>\
-You hear heavy footsteps coming from Main Street behind you!
-<</if>>\
-
-<<if $has_evidence>>\
-[[Make your escape!->Success]]
-<</if>>\
-[[Turn back to the street->Nearby Alley Facing Street]]
-<<include "Default Actions">>
-
-:: Main Street {"position":"500,0"}
-<h2>Main Street</h2>
-<<ticktime>>\
-@@#area-description;\
-You are in Main Street, in view of the intersection with Market on one side and First on the other. The mayor's office front entrance faces the street.@@
-<<see  "Mayors Office Exterior Front" "Main Street" "Main St and Market St" "Mayors Office Exterior Courtyard" "Main St and First">>\
-<<if $mayor.isLocated("Mayors Office Interior Entryway")>>\
-The mayor is still inside the Mayor's Office entryway.
-<<elseif $mayor.isLocated(passage())>>\
-The mayor sees you standing in the street and eyes you suspiciously as he leaves.
-<</if>>\
-<<if $guard1.isLocated("Market Street")>>\
-You hear heavy footsteps somewhere in the distance.
-<</if>>\
-
-<<if $can_act_freely>>\
-[[Return to the alley->Nearby Alley Facing Junction]]
-<<include "Default Actions">>
-<</if>>
 
 
 :: Default Actions {"position":"0,300"}
@@ -143,6 +79,6 @@ A pocket watch. It is currently <<if $timer.isSet is false>>not <</if>>ticking. 
 Night guard's patrol route map.
 Inconspicuous mission note.
 <<linkreplace "Read note">>\
-Gather evidence of corruption from the Mayor's Study.<</linkreplace>>
+Gather evidence of corruption from the Governor's Study.<</linkreplace>>
 $lockpick_count lockpick(s).
 <<return "Go Back">>
