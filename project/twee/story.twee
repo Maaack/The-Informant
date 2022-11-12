@@ -39,13 +39,13 @@ A shadow passes over the window of the entry way to the capitol building.
 [[It shouldn't be long now...->Nearby Alley Facing Street]]
 
 
-:: Default Actions {"position":"0,300"}
+:: Default Actions {"position":"100,350"}
 @@#default-actions;\
 [[Wait for ten seconds->Wait]]
 [[Check your pockets->Inventory]]@@
 
 
-:: Wait {"position":"100,300"}
+:: Wait {"position":"200,500"}
 <h2>Waiting...</h2>
 You wait 10 seconds.
 <<return ">>>">>
@@ -53,7 +53,7 @@ You wait 10 seconds.
 <<timed 0.5s>><<goto _previous>><</timed>>
 
 
-:: Inventory {"position":"200,300"}
+:: Inventory {"position":"0,500"}
 <h2>Inventory</h2>
 <<set $pockets_checked to true>>\
 You check your belongings and find:
@@ -72,12 +72,3 @@ $lockpick_count lockpick(s).
 <<return "Go Back">>
 
 
-:: Success {"position":"500,300"}
-<h2>You made it!</h2>
-You manage to turn the evidence over to the public. Justice is slow, but eventually served. The mayor burns for his lies and deceit.
-<h2>THE END</h2>
-<<linkreplace "Restart Game">>\
-<<script>>
-state.restart();
-<<endscript>>
-<</linkreplace>>

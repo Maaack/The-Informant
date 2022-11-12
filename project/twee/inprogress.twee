@@ -1,0 +1,264 @@
+:: Guard Detects {"position":"500,550"}
+<<if $guard_spots_actions.includes($guard_action) || $guard_spots_positions.includes($guard_position)>>\
+<<include [[Guard Sees You]] >>\
+<<elseif $guard_position == passage()>>\
+You find yourself in the same place as <<= $guard_name.toLowerCase()>>. He tackles and restrains you!
+<<set $can_act_freely to false>>\
+[[Oops->Caught]]
+<<elseif $guard_action == "checking the front door of the Capitol Building to see if it's locked" && $front_door_locked == false>>\
+$guard_name calls out from the front of the office, "Patrols! Come here now!" Something must have alerted him.
+<<set $can_act_freely to false>>\
+[[Oops->No Way Out]]
+<<elseif $guard_action == "checking the back door of the Capitol Building to see if it's locked" && $back_door_locked == false>>\
+$guard_name calls out from the back of the office, "Patrols! Come here now!" Something must have alerted him.
+<<set $can_act_freely to false>>\
+[[Oops->No Way Out]]
+<</if>>\
+
+:: Guard Sees You {"position":"350,675"}
+$guard_name spots you and shouts for help! Your cover is blown!
+<<set $can_act_freely to false>>
+[[Oops->Caught]]
+
+:: Governor Detects {"position":"500,675"}
+<<set _passage to passage()>>\
+<<switch _passage>>\
+<<case "Capitol Building Interior Entryway">>\
+<<if $mayor_position =="Capitol Building Interior Entryway">>\
+The mayor is still inside and shocked by your presence here.
+
+He exclaims, "What are you doing here scoundrel!? Get out!" This alerts the guards.
+<<include [[Guard Sees You]] >>
+<<elseif  $mayor_position =="Capitol Building Exterior Front">>\
+As the mayor is leaving out the front door, he nearly runs into you.
+
+He exclaims, "What are you doing here scoundrel!? Get out!" This alerts the guards.<<include [[Guard Sees You]] >>
+<</if>>\
+<<case "Capitol Building Exterior Front" "Front Door Lock">>\
+<<if $mayor_position=="Capitol Building Exterior Front">>\
+The mayor spots you and is startled by your proximity.
+
+He exclaims, "Bah! What are you doing here?" This alerts the guards. <<include [[Guard Sees You]] >>
+<</if>>\
+<<case "Capitol Building Exterior Courtyard">>\
+<<if $mayor_action=="locking the Capitol Building front door behind him">>\
+The mayor happens to spot your silhoette in the courtyard.
+
+He exclaims, "Hey! What are you doing over there? Guards!" This, naturally, alerts the guards.
+<<include [[Guard Sees You]] >>
+<</if>>\
+<</switch>>\
+
+
+:: Capitol Building Exterior Courtyard {"position":"700,250"}
+<h2>Capitol Building Exterior Courtyard</h2>
+<<include "TurnCounter">>\
+<<set $guard_spots_actions to []>>\
+<<set $guard_spots_positions to ["Capitol Building Exterior Front","Capitol Building Exterior Back"]>>\
+@@#area-description;\
+You can see the front and back entrances of the Capitol Building, as well as part of Main and Market Street. There are couple of benches, bushes, and trees that provide some cover.@@
+<<if ["Capitol Building Exterior Front", "Main Street", "Main St and Market St"].includes($mayor_position)>>\ 
+The mayor is $mayor_action.
+<</if>>\
+<<if $guard_position == "Main St and Market St" && $mayor_position == $guard_position>>\
+You hear <<= $guard_name.toLowerCase()>> wish the mayor a good evening. The mayor doesn't reply.
+<<include [[Guard Seen]]>>\
+<<elseif $guard_position == "Market Street">>\
+You hear heavy footsteps somewhere in the distance.
+<<elseif ["Main St and Market St","Main Street","Capitol Building Exterior Front","Capitol Building Exterior Courtyard","Capitol Building Exterior Back"].includes($guard_position)>>\
+$guard_name is $guard_action.
+<<include [[Guard Seen]]>>\
+<</if>>\
+<<include "Opponent Checks" >>\
+
+<<if $can_act_freely>>\
+[[Go to Main Street->Main Street]]
+[[Go to the Capitol Building front door->Capitol Building Exterior Front]] 
+[[Go to the Capitol Building back door->Capitol Building Exterior Back]]
+[[Hide in bushes->Capitol Building Exterior Courtyard Bushes]] 
+<<include "Default Actions">>
+<</if>>
+
+:: Capitol Building Exterior Courtyard Bushes {"position":"700,400"}
+<h2>Capitol Building Exterior Courtyard Bushes</h2>
+<<include "TurnCounter">>\
+<<set $guard_spots_actions to []>>\
+<<set $guard_spots_positions to []>>\
+@@#area-description;\
+You are hidden in bushes. You can see the courtyard, front, and back entrances of the Capitol Building. Only part of Market Street is visible to you.@@
+<<if ["Capitol Building Exterior Front", "Main Street"].includes($mayor_position)>>\ 
+The mayor is $mayor_action.
+<</if>>\
+<<if $guard_position == "Main St and Market St" && $mayor_position == $guard_position>>\
+You hear <<= $guard_name.toLowerCase()>> wish the mayor a good evening. The mayor doesn't reply.
+<<include [[Guard Seen]]>>\
+<<elseif $guard_position == "Main St and Market St">>\
+You hear heavy footsteps coming from Main and Market.
+<<elseif ["Main Street","Capitol Building Exterior Front","Capitol Building Exterior Courtyard","Capitol Building Exterior Back"].includes($guard_position)>>\
+$guard_name is $guard_action.
+<<include [[Guard Seen]]>>\
+<</if>>\
+<<include "Opponent Checks" >>\
+
+[[Leave bushes->Capitol Building Exterior Courtyard]] 
+<<include "Default Actions">>
+
+:: Capitol Building Exterior Front {"position":"800,0"}
+<h2>Capitol Building Exterior Front Entrance</h2>
+<<include "TurnCounter">>\
+<<set $guard_spots_actions to ["patrolling around the Mayor's Office"]>>\
+<<set $guard_spots_positions to []>>\
+@@#area-description;\
+You're at the front door of the Mayor's Office.@@
+The door is currently <<if $front_door_locked>>locked<<else>>unlocked<</if>>.
+<<if $mayor_position == "Mayors Office Interior Entryway">>\
+The mayor is still inside the entryway, and about to step out. This is a bad place to be.
+<<elseif ["Mayors Office Exterior Front", "Main Street", "Main St and Market St"].includes($mayor_position)>>\ 
+The mayor is $mayor_action.
+<</if>>\
+<<if $guard_position == "Main St and Market St" && $mayor_position == $guard_position>>\
+You hear <<= $guard_name.toLowerCase()>> wish the mayor a good evening. The mayor doesn't reply.
+<<include [[Guard Seen]]>>\
+<<elseif $guard_position == "Main St and Market St">>\
+You hear heavy footsteps somewhere in the distance.
+<<elseif ["Main St and Market St","Main Street","Mayors Office Exterior Courtyard","Mayors Office Exterior Back"].includes($guard_position)>>\
+$guard_name is $guard_action.
+<<include [[Guard Seen]]>>\
+<</if>>\
+<<include "Opponent Checks" >>\
+
+<<if $can_act_freely>>\
+@@#lock-actions;\
+<<if $front_door_locked>>\
+<<if $has_front_door_key>>\
+<<link "Unlock the front door with the key">>\
+<<set $front_door_locked to false>>\
+<<goto [[Mayors Office Exterior Front]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Unlock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<<else>>\
+<<if $has_front_door_key>>\
+<<link "Lock the front door with the key">>\
+<<set $front_door_locked to true>>\
+<<goto [[Mayors Office Exterior Front]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Lock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<</if>>@@\
+<<if not $front_door_locked>>\
+[[Enter Mayor's Office front door->Mayors Office Interior Entryway]]
+<</if>>\
+[[Go to Main Street->Main Street]]
+[[Go to the Mayor's Office courtyard->Mayors Office Exterior Courtyard]] 
+<<include "Default Actions">>
+<</if>>
+
+:: Front Door Lock {"position":"900,150"}
+<h2>Capitol Building Front Door Lock</h2>
+<<if $picking_lock>>\
+<<include "TurnCounter">>\
+<<set $picking_lock_time += 1>>\
+You spend 10 seconds lockpicking the door.
+<<include "Opponent Checks" >>\
+
+<<if $can_act_freely>>\
+<<timed 2s>>\
+<<if $picking_lock_time == $picking_lock_target>>\
+<<set $picking_lock_time to 0>>\
+<<set $picking_lock to false>>\
+<<set $lockpick_count -= 1>>\
+<<set _success to false>>\
+<<switch $picking_lock_target>>\
+<<case 1>>\
+<<if random(3) == 0>><<set _success to true>><</if>>\
+<<case 2>>\
+<<if random(1) == 0>><<set _success to true>><</if>>\
+<<case 4>>
+<<set _success to true>>\
+<</switch>>\
+<<if _success>>\
+<<set $front_door_locked to !$front_door_locked>>\
+<<return "Success">>
+<<else>>\
+<<return "Failure">>
+<</if>>\
+<<else>>\
+<<goto [[Front Door Lock]] >>
+<</if>>\
+<</timed>>\
+<</if>>\
+<<else>>\
+This door is currently <<if $front_door_locked>>locked<<else>>unlocked<</if>>.
+Lockpicking it will <<if $front_door_locked>>unlock<<else>>lock<</if>> it.
+This normally takes you 40 seconds to do carefully, but you can pick up the pace at risk of failure.
+@@.easy;<<link "Take your time (40 seconds, 100% success)">>\
+<<set $picking_lock_target to 4>>
+<<set $picking_lock to true>>
+<<goto [[Front Door Lock]]>>
+<</link>>@@
+@@.medium;<<link "Double time (20 seconds, 50% success)">>\
+<<set $picking_lock_target to 2>>
+<<set $picking_lock to true>>
+<<goto [[Front Door Lock]]>>
+<</link>>@@
+@@.hard;<<link "Rush it (10 seconds, 25% success)">>\
+<<set $picking_lock_target to 1>>
+<<set $picking_lock to true>>
+<<goto [[Front Door Lock]]>>
+<</link>>@@
+<<return "Go back">>
+<</if>>\
+
+
+:: Capitol Building Interior Entryway {"position":"1000,0"}
+<h2>Capitol Building Interior Entryway</h2>
+<<include "TurnCounter">>\
+<<set $guard_spots_actions to []>>\
+<<set $guard_spots_positions to []>>\
+@@#area-description;\
+You stand in the entryway of the Mayor's Office.@@
+The door is currently <<if $front_door_locked>>locked<<else>>unlocked<</if>>.
+<<if $guard_action == "checking the front door of the Mayor's Office to see if it's locked">>\
+<<if $front_door_locked>>\
+The door handle rattles loudly, but stays secure.
+<<else>>\
+The door handle is turned forecefully from the otherside. The door opens!
+<</if>>\
+<</if>>\
+<<include "Opponent Checks" >>\
+
+<<if $can_act_freely>>\
+@@#lock-actions;\
+<<if $front_door_locked>>\
+<<if $has_front_door_key>>\
+<<link "Unlock the front door with the key">>\
+<<set $front_door_locked to false>>\
+<<goto [[Mayors Office Interior Entryway]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Unlock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<<else>>\
+<<if $has_front_door_key>>\
+<<link "Lock the front door with the key">>\
+<<set $front_door_locked to true>>\
+<<goto [[Mayors Office Interior Entryway]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Lock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<</if>>@@\
+<<if not $front_door_locked>>\
+[[Exit Mayor's Office front door->Mayors Office Exterior Front]]
+<</if>>\
+[[Go to Reception Desk->Mayors Office Interior Reception]]
+[[Go to Main Hall->Mayors Office Interior Main Hall]]
+<<include "Default Actions">>
+<</if>>\

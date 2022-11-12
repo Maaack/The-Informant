@@ -1,0 +1,33 @@
+:: Success {"position":"500,300"}
+<h2>You made it!</h2>
+You manage to turn the evidence over to the public. Justice is slow, but eventually served. The mayor burns for his lies and deceit.
+<h2>THE END</h2>
+<<linkreplace "Restart Game">>\
+<<script>>
+state.restart();
+<</script>>
+<</linkreplace>>
+
+:: No Way Out {"position":"350,550"}
+<h2>No Way Out!</h2>
+You are quickly surrounded by guards. There's no escape.
+@@.hint;\
+You can hit the back button on the top left to correct a mistake.@@
+<h2>THE END</h2>
+<<linkreplace "Restart Game">>\
+<<script>>
+state.restart();
+<</script>>
+<</linkreplace>>
+
+:: Caught {"position":"350,400"}
+<h2>Caught!</h2>
+You were caught by the guards!
+@@.hint;\
+You can hit the back button on the top left to correct a mistake.@@
+<h2>THE END</h2>
+<<linkreplace "Restart Game">>\
+<<script>>
+state.restart();
+<</script>>
+<</linkreplace>>
