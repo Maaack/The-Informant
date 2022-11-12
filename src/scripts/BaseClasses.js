@@ -30,6 +30,25 @@ class Identity {
     }
   }
 
+  getFamiliarityOrder(state){
+    switch(state){
+      case Familiarity.Unknown:
+        return 0;
+        break;
+      case Familiarity.Indefinite:
+        return 1;
+        break;
+      case Familiarity.Definite:
+        return 2;
+        break;
+    }
+  }
+
+  isHigherFamiliarity(state){
+    var currentOrder = this.getFamiliarityOrder(this.state)
+    return currentOrder < this.getFamiliarityOrder(state)
+  }
+
   printFamiliarityChange(newState){
     switch(newState){
       case Familiarity.Definite:
@@ -43,7 +62,7 @@ class Identity {
   }
 
   raiseFamiliarity(newState){
-    if (newState in Familiarity && this.state != newState){
+    if (newState in Familiarity && this.isHigherFamiliarity(newState)){
       this.state = newState;
       return this.printFamiliarityChange(newState)
     }
@@ -115,6 +134,7 @@ class Character {
     if (typeof this.action === null){
       return "";
     }
+    this.identity.raiseFamiliarity(Familiarity.Indefinite);
     return this.describeAction(this.action.getVisibleText());
   }
   seenIdentity(){

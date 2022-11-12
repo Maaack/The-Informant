@@ -4,7 +4,7 @@ setup.actionOrders = {};
 setup.characters = {};
 
 setup.identities.guard = new Identity("the night patrol guard", "an armed guard", "someone");
-setup.identities.governor = new Identity("the governor", "a man in fancily ordained business atire", "someone");
+setup.identities.governor = new Identity("the governor", "a mustached man in fancy business atire", "someone");
 
 setup.identities.guard.raiseToDefinite = "You recognize this as the nightly patrol guard. He patrols this route every 10 minutes. Like you - he's very punctual.";
 setup.identities.guard.raiseToIndefinite = "You think this is likely a patrolling guard.";
