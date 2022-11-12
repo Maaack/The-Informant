@@ -62,7 +62,7 @@ A shadow passes over the window of the entry way to the governor's office.
 You wait 10 seconds.
 <<return ">>>">>
 <<set _previous to previous()>>
-<<timed 1s>><<goto _previous>><</timed>>
+<<timed 0.5s>><<goto _previous>><</timed>>
 
 
 :: Inventory {"position":"200,300"}

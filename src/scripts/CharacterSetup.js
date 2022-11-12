@@ -8,6 +8,7 @@ setup.identities.governor = new Identity("the governor", "a man in fancily ordai
 
 setup.identities.guard.raiseToDefinite = "You recognize this as the nightly patrol guard. He patrols this route every 10 minutes. Like you - he's very punctual.";
 setup.identities.guard.raiseToIndefinite = "You think this is likely a patrolling guard.";
+setup.identities.governor.raiseToDefinite = "To some, he's the pride of the people. To you, the governor is a run-of-the-mill charismatic fascist.";
 setup.routes.nightGuardPatrol = {    
     2: "Far Market Street",
     4: "Market Street",
@@ -28,28 +29,36 @@ setup.routes.governorRoute = {
     4: "Governors Office Exterior Front",
     6: "Main Street",
     8: "Main St and Market St",
-    22: "Gone"
+    10: "Gone"
 };
 
 setup.actions = {
     leavingFrontDoor : new Action("leaving through the front door", "opening a door"),
     lockingFrontDoor : new Action("locking the front door behind him", "handling keys and door lock"),
     walkingTowardMarket : new Action("walking toward Market St."),
+    leavingTheArea : new Action("leaving the area for the night"),
     patrol : new Action("patrolling", "making regular metal clanging sounds", "clanging metal"),
     greetingGovernor : new Action("bidding the governor a good evening. The governor doesn't reply", "bidding the governor a good evening. The governor doesn't reply", "says something to the governor."),
-
+    leavingOnPatrol : new Action("leaving the area. He should be back in 10 minutes. I should set my timer"),
+    checkingTheDoor : new Action("checking the door to see if it's locked")
 };
 
 setup.actionOrders.nightGuardActions = {
     1: setup.actions.patrol,
     8: setup.actions.greetingGovernor,
     9: setup.actions.patrol,
+    11: setup.actions.checkingTheDoor,
+    12: setup.actions.patrol,
+    13: setup.actions.checkingTheDoor,
+    14: setup.actions.patrol,
+    18: setup.actions.leavingOnPatrol,
 };
 
 setup.actionOrders.governorActions = {
     4: setup.actions.leavingFrontDoor,
     5: setup.actions.lockingFrontDoor,
     6: setup.actions.walkingTowardMarket,
+    8: setup.actions.leavingTheArea,
 };
 
 setup.characters.guard = new Character(setup.identities.guard, setup.routes.nightGuardPatrol, setup.actionOrders.nightGuardActions);

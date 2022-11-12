@@ -7,7 +7,7 @@ const Familiarity = {
 
 
 class Identity {
-  constructor(definite, indefinite, unknown) {
+  constructor(definite, indefinite = "someone", unknown = "someone") {
     this.definite = definite;
     this.indefinite = indefinite;
     this.unknown = unknown;
