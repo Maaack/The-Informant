@@ -1,0 +1,35 @@
+#default-actions a {
+    color: DarkSlateBlue;
+  }
+  
+  #lock-actions a {
+    color: DarkOrange;
+  }
+  
+  #search-actions a {
+    color: DarkOliveGreen;
+  }
+  
+  #transfer-actions a {
+    color: FireBrick;
+  }
+  
+  #area-description {
+    font-size:1.2em;
+    color: DimGray;
+  }
+  
+  .hint {
+    font-size:0.8em;
+    color: DimGray;
+  }
+  
+  .easy a{
+    color: YellowGreen;  
+  }
+  .medium a{
+    color: Orange;  
+  }
+  .hard a{
+    color: OrangeRed;  
+  }
