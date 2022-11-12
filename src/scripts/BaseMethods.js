@@ -1,11 +1,18 @@
 function concatCommasAnd(stringArray){
-    if(stringArray.length == 1){
-        return stringArray[0];
-    } else if(stringArray.length == 2){
-        return stringArray.join(" and ");
-    } else if(stringArray.length > 2){
-        let lastString = stringArray.pop();
-        let firstString = stringArray.join(", ");
+    var filteredStringArray = [];
+    stringArray.forEach(function(stringPart) {
+        if (stringPart != ""){
+            filteredStringArray.push(stringPart)
+        }
+    });
+
+    if(filteredStringArray.length == 1){
+        return filteredStringArray[0];
+    } else if(filteredStringArray.length == 2){
+        return filteredStringArray.join(" and ");
+    } else if(filteredStringArray.length > 2){
+        let lastString = filteredStringArray.pop();
+        let firstString = filteredStringArray.join(", ");
         return firstString + ", and " + lastString; 
     } else {
         return ""; 

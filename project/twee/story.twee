@@ -9,7 +9,7 @@
 <<set $pocket_watch_reset_time to 60>>
 <<set $pocket_watch_ten_seconds to $pocket_watch_reset_time>>
 <<set $pocket_watch_set to false>>
-<<set $governor_position to "Governors Office Interior Entryway" >>
+<<set $governor_position to "Capitol Building Interior Entryway" >>
 <<set $governor_action to "">>
 <<set $guard_position to "Gone" >>
 <<set $guard_next_position to "Gone" >>
@@ -46,7 +46,7 @@ Study door key
 
 :: Start {"position":"200,0"}
 <h2>Dark Alley - Facing Main Street</h2>
-A shadow passes over the window of the entry way to the governor's office.
+A shadow passes over the window of the entry way to the capitol building.
 
 [[It shouldn't be long now...->Nearby Alley Facing Street]]
 

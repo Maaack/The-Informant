@@ -2,10 +2,11 @@
 <h2>Main Street</h2>
 <<ticktime>>\
 @@#area-description;\
-You are in Main Street, in view of the intersection with Market on one side and First on the other. The governor's office front entrance faces the street.@@
-<<see  "Governors Office Exterior Front" "Main Street" "Main St and Market St" "Governors Office Exterior Courtyard" "Main St and First">>\
-<<if $governor.isLocated("Governors Office Interior Entryway")>>\
-The governor is still inside the Governor's Office entryway.
+You are in Main Street, in view of the intersection with Market on one side and First on the other. The capitol building front entrance faces the street.@@
+<<see  "Capitol Building Exterior Front" "Main Street" "Main St and Market St" "Capitol Building Exterior Courtyard" "Main St and First">>\
+<<hear "Main St and Market St" "Market Street" "First Street" "Nearby Alley Facing Street" "Nearby Alley Facing Junction">>\
+<<if $governor.isLocated("Capitol Building Interior Entryway")>>\
+The governor is still inside the Capitol Building entryway.
 <<elseif $governor.isLocated(passage())>>\
 The governor sees you standing in the street and eyes you suspiciously as he leaves.
 <</if>>\
@@ -25,13 +26,13 @@ You hear heavy footsteps somewhere in the distance.
 <h2>Dark Alley - Facing Main Street</h2>
 <<ticktime>>\
 @@#area-description;\
-You see part of Main Street and the front entrance of the Governor's Office.@@
-<<see "Governors Office Exterior Front" "Main Street" "Governors Office Exterior Courtyard" "Main St and First">>\
+You see part of Main Street and the front entrance of the Capitol Building.@@
+<<see "Capitol Building Exterior Front" "Main Street" "Capitol Building Exterior Courtyard" "Main St and First">>\
 <<hear "Main St and Market St" "Market Street" "Far Market Street">>\
 <<if $time==1>>\
 The last candle in the entryway window just went out. The governor should be leaving in the next 30-60 seconds.
-<<elseif $governor.isLocated("Governors Office Interior Entryway")>>\
-You watch the governor's office front door in anticipation.
+<<elseif $governor.isLocated("Capitol Building Interior Entryway")>>\
+You watch the capitol building front door in anticipation.
 <</if>>\
 
 [[Check behind you->Nearby Alley Facing Junction]]

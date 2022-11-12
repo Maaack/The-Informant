@@ -4,7 +4,7 @@ setup.actionOrders = {};
 setup.characters = {};
 
 setup.identities.guard = new Identity("the night patrol guard", "an armed guard", "someone");
-setup.identities.governor = new Identity("the governor", "a mustached man in fancy business atire", "someone");
+setup.identities.governor = new Identity("the governor", "a mustached man in fancy business attire", "someone");
 
 setup.identities.guard.raiseToDefinite = "You recognize this as the nightly patrol guard. He patrols this route every 10 minutes. Like you - he's very punctual.";
 setup.identities.guard.raiseToIndefinite = "You think this is likely a patrolling guard.";
@@ -14,10 +14,10 @@ setup.routes.nightGuardPatrol = {
     4: "Market Street",
     5: "Main St and Market St",
     9: "Main Street",
-    11: "Governors Office Exterior Front",
-    12: "Governors Office Exterior Courtyard",
-    13: "Governors Office Exterior Back",
-    14: "Governors Office Exterior Courtyard",
+    11: "Capitol Building Exterior Front",
+    12: "Capitol Building Exterior Courtyard",
+    13: "Capitol Building Exterior Back",
+    14: "Capitol Building Exterior Courtyard",
     15: "Main Street",
     17: "Main St and First",
     20: "First Steet",
@@ -25,8 +25,8 @@ setup.routes.nightGuardPatrol = {
 };
 
 setup.routes.governorRoute = {    
-    1: "Governors Office Interior Entryway",
-    4: "Governors Office Exterior Front",
+    1: "Capitol Building Interior Entryway",
+    4: "Capitol Building Exterior Front",
     6: "Main Street",
     8: "Main St and Market St",
     10: "Gone"
