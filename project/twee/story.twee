@@ -1,6 +1,4 @@
 :: StoryInit {"position":"0,100"}
-<<set $can_act_freely to true>>
-<<set $ten_second_counter to 0>>
 <<set $pockets_checked to false>>
 <<set $lockpick_count to 3>>
 <<set $picking_lock to false>>
@@ -9,19 +7,9 @@
 <<set $pocket_watch_reset_time to 60>>
 <<set $pocket_watch_ten_seconds to $pocket_watch_reset_time>>
 <<set $pocket_watch_set to false>>
-<<set $governor_position to "Capitol Building Interior Entryway" >>
-<<set $governor_action to "">>
-<<set $guard_position to "Gone" >>
-<<set $guard_next_position to "Gone" >>
-<<set $guard_facing to "None" >>
-<<set $guard_action to "">>
-<<set $guard_after_first_seen to "The guard">>
-<<set $guard_name to "A guard">>
 <<set $front_door_locked to false>>
 <<set $back_door_locked to true>>
 <<set $study_door_locked to true>>
-<<set $guard_spots_actions to []>>
-<<set $guard_spots_positions to []>>
 <<set $has_evidence to false>>
 <<set $has_front_door_key to false>>
 <<set $has_study_door_key to false>>
@@ -82,3 +70,14 @@ Inconspicuous mission note.
 Gather evidence of corruption from the Governor's Study.<</linkreplace>>
 $lockpick_count lockpick(s).
 <<return "Go Back">>
+
+
+:: Success {"position":"500,300"}
+<h2>You made it!</h2>
+You manage to turn the evidence over to the public. Justice is slow, but eventually served. The mayor burns for his lies and deceit.
+<h2>THE END</h2>
+<<linkreplace "Restart Game">>\
+<<script>>
+state.restart();
+<<endscript>>
+<</linkreplace>>

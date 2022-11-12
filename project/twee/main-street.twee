@@ -14,11 +14,8 @@ The governor sees you standing in the street and eyes you suspiciously as he lea
 You hear heavy footsteps somewhere in the distance.
 <</if>>\
 
-<<if $can_act_freely>>\
 [[Return to the alley->Nearby Alley Facing Junction]]
 <<include "Default Actions">>
-<</if>>
-
 
 
 
@@ -51,13 +48,11 @@ You look over your shoulder, to the alley junction behind you.
 <</if>>\
 @@#area-description;\
 The alley is dark and a bit smelly. You are well hidden here.@@
-<<if $guard_position == "Main St and Market St" || $guard_position == "Far Market Street">>\
-You hear heavy footsteps in the distance.
-<<elseif $guard_position == "Market Street">>\
-The shadow of a figure with a spear passes over the wall at the junction. You hear distant heavy footsteps going down Market Street toward Main Street. Must be <<= $guard_name.toLowerCase()>> on patrol.
-<<include [[Guard Seen]] >>\
+<<hear "Main St and Market St" "Far Market Street" "Market Street" "Main Street">>
+<<if $guard.isLocated("Market Street")>>\
+The shadow of a figure with a spear passes over the wall at the junction. You hear distant heavy footsteps going down Market Street toward Main Street. Must be a guard on patrol.
 His patrol doesn't take him through this alley.
-<<elseif $guard_position == "Main Street">>\
+<<elseif $guard.isLocated("Main Street")>>\
 You hear heavy footsteps coming from Main Street behind you!
 <</if>>\
 

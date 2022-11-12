@@ -3,12 +3,13 @@ setup.routes = {};
 setup.actionOrders = {};
 setup.characters = {};
 
-setup.identities.guard = new Identity("the night patrol guard", "an armed guard", "someone");
-setup.identities.governor = new Identity("the governor", "a mustached man in fancy business attire", "someone");
+State.variables.identities = {};
+State.variables.identities.guard = new Identity("the night patrol guard", "an armed guard", "someone");
+State.variables.identities.governor = new Identity("the governor", "a mustached man in fancy business attire", "someone");
 
-setup.identities.guard.raiseToDefinite = "You recognize this as the nightly patrol guard. He patrols this route every 10 minutes. Like you - he's very punctual.";
-setup.identities.guard.raiseToIndefinite = "You think this is likely a patrolling guard.";
-setup.identities.governor.raiseToDefinite = "To some, he's the pride of the people. To you, the governor is a run-of-the-mill charismatic fascist.";
+State.variables.identities.guard.raiseToDefinite = "You recognize this as the nightly patrol guard. He patrols this route every 10 minutes. Like you - he's very punctual.";
+State.variables.identities.guard.raiseToIndefinite = "You think this is likely a patrolling guard.";
+State.variables.identities.governor.raiseToDefinite = "To some, he's the pride of the people. To you, the governor is a run-of-the-mill charismatic fascist.";
 setup.routes.nightGuardPatrol = {    
     2: "Far Market Street",
     4: "Market Street",
@@ -61,9 +62,5 @@ setup.actionOrders.governorActions = {
     8: setup.actions.leavingTheArea,
 };
 
-setup.characters.guard = new Character(setup.identities.guard, setup.routes.nightGuardPatrol, setup.actionOrders.nightGuardActions);
-setup.characters.governor = new Character(setup.identities.governor, setup.routes.governorRoute, setup.actionOrders.governorActions);
-setup.characterArray = [setup.characters.governor, setup.characters.guard]
-
-State.variables.guard = setup.characters.guard
-State.variables.governor = setup.characters.governor
+State.variables.guard = new Character(State.variables.identities.guard, setup.routes.nightGuardPatrol, setup.actionOrders.nightGuardActions);
+State.variables.governor = new Character(State.variables.identities.governor, setup.routes.governorRoute, setup.actionOrders.governorActions);
