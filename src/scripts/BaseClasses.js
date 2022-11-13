@@ -131,7 +131,7 @@ class Character {
     return this.getName() + " is " + text;    
   }
   seenString(){
-    if (typeof this.action === null){
+    if (this.action === null){
       return "";
     }
     this.identity.raiseFamiliarity(Familiarity.Indefinite);
@@ -141,7 +141,7 @@ class Character {
     return this.identity.raiseFamiliarity(Familiarity.Definite);
   }
   heardString(){
-    if (typeof this.action === null){
+    if (this.action === null){
       return "";
     }
     return this.describeAction(this.action.getAudibleText());

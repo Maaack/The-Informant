@@ -1,0 +1,66 @@
+
+:: Capitol Building Exterior Courtyard {"position":"700,250"}
+<h2>Capitol Building Exterior Courtyard</h2>
+<<ticktime>>\
+@@#area-description;\
+You can see the front and back entrances of the Capitol Building, as well as part of Main and Market Street. There are couple of benches, bushes, and trees that provide some cover.@@
+<<see "Capitol Building Exterior Front" "Capitol Building Exterior Back" "Capitol Building Exterior Courtyard" "Main Street" "Main St and Market St">>\
+<<hear "Main St and Market St" "Market Street" "Main St and First">>\
+
+[[Go to Main Street->Main Street]]
+[[Go to the Capitol Building front door->Capitol Building Exterior Front]] 
+[[Go to the Capitol Building back door->Capitol Building Exterior Back]]
+[[Hide in bushes->Capitol Building Exterior Courtyard Bushes]] 
+<<include "Default Actions">>
+
+
+:: Capitol Building Exterior Courtyard Bushes {"position":"700,400"}
+<h2>Capitol Building Exterior Courtyard Bushes</h2>
+<<ticktime>>\
+@@#area-description;\
+You are hidden in bushes. You can see the courtyard, front, and back entrances of the Capitol Building. Only part of Market Street is visible to you.@@
+<<see "Capitol Building Exterior Front" "Capitol Building Exterior Back" "Capitol Building Exterior Courtyard" "Main Street">>\
+<<hear "Main St and Market St" "Market Street" "Main St and First">>\
+
+[[Leave bushes->Capitol Building Exterior Courtyard]] 
+<<include "Default Actions">>
+
+:: Capitol Building Exterior Front {"position":"800,0"}
+<h2>Capitol Building Exterior Front Entrance</h2>
+<<ticktime>>\
+@@#area-description;\
+You're at the front door of the Capitol Building.@@
+The door is currently <<if $front_door_locked>>locked<<else>>unlocked<</if>>.
+<<if $governor.isLocated("Capitol Building Interior Entryway")>>\
+The governor is still inside the entryway, and about to step out. This is a bad place to be.
+<</if>>\
+<<see "Capitol Building Exterior Front" "Capitol Building Exterior Courtyard" "Main Street">>\
+<<hear "Capitol Building Interior Entryway" "Main St and Market St" "Market Street" "Main St and First" "Capitol Building Exterior Courtyard">>\
+@@#lock-actions;\
+<<if $front_door_locked>>\
+<<if $has_front_door_key>>\
+<<link "Unlock the front door with the key">>\
+<<set $front_door_locked to false>>\
+<<goto [[Capitol Building Exterior Front]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Unlock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<<else>>\
+<<if $has_front_door_key>>\
+<<link "Lock the front door with the key">>\
+<<set $front_door_locked to true>>\
+<<goto [[Capitol Building Exterior Front]] >>
+<</link>>
+<</if>>\
+<<if $pockets_checked && $lockpick_count > 0>>\
+[[Lock the front door with a lockpick->Front Door Lock]]
+<</if>>\
+<</if>>@@\
+<<if not $front_door_locked>>\
+[[Enter Capitol Building front door->Capitol Building Interior Entryway]]
+<</if>>\
+[[Go to Main Street->Main Street]]
+[[Go to the Capitol Building courtyard->Capitol Building Exterior Courtyard]] 
+<<include "Default Actions">>
