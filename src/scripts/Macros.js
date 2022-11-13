@@ -19,7 +19,7 @@ try {
 };
     
 try {
-    macros['see'] = {        
+    macros['see'] = {
         handler: function(place, macroName, params, parser) {
             if(params.length == 0) {
                 return;
