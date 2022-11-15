@@ -4,8 +4,6 @@ const Familiarity = {
   Definite: 'Definite'
 }
 
-
-
 class Identity {
   constructor(definite, indefinite = "someone", unknown = "someone") {
     this.definite = definite;
@@ -103,7 +101,7 @@ class Character {
     this.identity = identity;
     this.route = route;
     this.actions = actions;
-    this.location = ""
+    this.location = "";
     this.action = null;
     this.seen = false;
     this.heard = false;

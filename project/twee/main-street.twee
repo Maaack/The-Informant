@@ -19,8 +19,6 @@ You hear heavy footsteps somewhere in the distance.
 [[Go to the Capitol Building courtyard->Capitol Building Exterior Courtyard]]
 <<include "Default Actions">>
 
-
-
 :: Nearby Alley Facing Street {"position":"350,0"}
 <h2>Dark Alley - Facing Main Street</h2>
 <<ticktime>>\
@@ -37,9 +35,6 @@ You watch the capitol building front door in anticipation.
 [[Check behind you->Nearby Alley Facing Junction]]
 [[Go into the street->Main Street]]
 <<include "Default Actions">>
-
-
-
 
 :: Nearby Alley Facing Junction {"position":"350,200"}
 <h2>Dark Alley - Facing Alley Junction</h2>
@@ -63,4 +58,3 @@ You hear heavy footsteps coming from Main Street behind you!
 <</if>>\
 [[Turn back to the street->Nearby Alley Facing Street]]
 <<include "Default Actions">>
-
