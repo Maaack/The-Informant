@@ -148,3 +148,19 @@ class Character {
     return this.identity.raiseFamiliarity(Familiarity.Indefinite);
   }
 };
+
+class PathData {
+  constructor(destination = "", description = "") {
+    this.destination = destination;
+    this.description = description;
+  }
+}
+
+class LocationData {
+  constructor(name = "", visible = [], audible = [], audibleFar = []) {
+    this.name = name;
+    this.visible = visible;
+    this.audible = audible;
+    this.audibleFar = audibleFar;
+  }
+}
