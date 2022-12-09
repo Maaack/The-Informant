@@ -24,7 +24,6 @@ try {
             if(params.length == 0) {
                 return;
             }
-
             params.forEach(function callback1(location) {
                 let visibleCharacters = [];
                 let visibleStrings = [];
@@ -86,12 +85,22 @@ try {
 };
     
 try {
-    macros['opponentchecks'] = {
+    macros['detected'] = {
         handler: function(place, macroName, params, parser) {
+            if(params.length == 0) {
+                return;
+            }
+            params.forEach(function callback1(location) {
+                getCharacters().forEach(function callback2(person) {
+                    if (person.isLocated(location)){
+                        new Wikifier(place, person.getName().toUpperFirst() + " detects you from " + location + ".<br>");
+                    }
+                });
+            });
         }
     };
 } catch(e) {
-    throwError(place,"opponentchecks setup error: "+e.message); 
+    throwError(place,"detected setup error: "+e.message); 
 };
 
 function getCharacters(){

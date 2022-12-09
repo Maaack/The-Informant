@@ -10,9 +10,7 @@ The governor is still inside the Capitol Building entryway.
 <<elseif $governor.isLocated(passage())>>\
 The governor sees you standing in the street and eyes you suspiciously as he leaves.
 <</if>>\
-<<if $guard.isLocated("Market Street")>>\
-You hear heavy footsteps somewhere in the distance.
-<</if>>\
+<<detected "Main St and Market St">>
 
 [[Return to the alley->Nearby Alley Facing Junction]]
 [[Go to the Capitol Building front door->Capitol Building Exterior Front]]
