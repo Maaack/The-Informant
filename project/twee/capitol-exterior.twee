@@ -5,7 +5,7 @@
 @@#area-description;\
 You can see the front and back entrances of the Capitol Building, as well as part of Main and Market Street. There are couple of benches, bushes, and trees that provide some cover.@@
 <<see "Capitol Building Exterior Front" "Capitol Building Exterior Back" "Capitol Building Exterior Courtyard" "Main Street" "Main St and Market St">>\
-<<hear "Main St and Market St" "Market Street" "Main St and First">>\
+<<detect "hear" "Main St and Market St" "Market Street" "Main St and First">>\
 
 [[Go to Main Street->Main Street]]
 [[Go to the Capitol Building front door->Capitol Building Exterior Front]] 
@@ -20,7 +20,7 @@ You can see the front and back entrances of the Capitol Building, as well as par
 @@#area-description;\
 You are hidden in bushes. You can see the courtyard, front, and back entrances of the Capitol Building. Only part of Market Street is visible to you.@@
 <<see "Capitol Building Exterior Front" "Capitol Building Exterior Back" "Capitol Building Exterior Courtyard" "Main Street">>\
-<<hear "Main St and Market St" "Market Street" "Main St and First">>\
+<<detect "hear" "Main St and Market St" "Market Street" "Main St and First">>\
 
 [[Leave bushes->Capitol Building Exterior Courtyard]] 
 <<include "Default Actions">>
@@ -35,7 +35,7 @@ The door is currently <<if $front_door_locked>>locked<<else>>unlocked<</if>>.
 The governor is still inside the entryway, and about to step out. This is a bad place to be.
 <</if>>\
 <<see "Capitol Building Exterior Front" "Capitol Building Exterior Courtyard" "Main Street">>\
-<<hear "Capitol Building Interior Entryway" "Main St and Market St" "Market Street" "Main St and First" "Capitol Building Exterior Courtyard">>\
+<<detect "hear" "Capitol Building Interior Entryway" "Main St and Market St" "Market Street" "Main St and First" "Capitol Building Exterior Courtyard">>\
 @@#lock-actions;\
 <<if $front_door_locked>>\
 <<if $has_front_door_key>>\

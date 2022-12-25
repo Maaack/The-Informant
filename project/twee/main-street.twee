@@ -4,7 +4,7 @@
 @@#area-description;\
 You are in Main Street, in view of the intersection with Market on one side and First on the other. The capitol building front entrance faces the street.@@
 <<see  "Capitol Building Exterior Front" "Main Street" "Main St and Market St" "Capitol Building Exterior Courtyard" "Main St and First">>\
-<<hear "Main St and Market St" "Market Street" "First Street" "Nearby Alley Facing Street" "Nearby Alley Facing Junction">>\
+<<detect "hear" "Main St and Market St" "Market Street" "First Street" "Nearby Alley Facing Street" "Nearby Alley Facing Junction">>\
 <<if $governor.isLocated("Capitol Building Interior Entryway")>>\
 The governor is still inside the Capitol Building entryway.
 <<elseif $governor.isLocated(passage())>>\
@@ -23,7 +23,7 @@ The governor sees you standing in the street and eyes you suspiciously as he lea
 @@#area-description;\
 You see part of Main Street and the front entrance of the Capitol Building.@@
 <<see "Capitol Building Exterior Front" "Main Street" "Capitol Building Exterior Courtyard" "Main St and First">>\
-<<hear "Main St and Market St" "Market Street" "Far Market Street">>\
+<<detect "hear" "Main St and Market St" "Market Street" "Far Market Street">>\
 <<if $time==1>>\
 The last candle in the entryway window just went out. The governor should be leaving in the next 30-60 seconds.
 <<elseif $governor.isLocated("Capitol Building Interior Entryway")>>\
@@ -43,7 +43,7 @@ You look over your shoulder, to the alley junction behind you.
 <</if>>\
 @@#area-description;\
 The alley is dark and a bit smelly. You are well hidden here.@@
-<<hear "Main St and Market St" "Far Market Street" "Market Street" "Main Street">>
+<<detect "hear" "Main St and Market St" "Far Market Street" "Market Street" "Main Street">>
 <<if $guard.isLocated("Market Street")>>\
 The shadow of a figure with a spear passes over the wall at the junction. You hear distant heavy footsteps going down Market Street toward Main Street. Must be a guard on patrol.
 His patrol doesn't take him through this alley.

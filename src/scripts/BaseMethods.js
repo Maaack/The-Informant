@@ -1,20 +1,28 @@
-function concatCommasAnd(stringArray){
-    var filteredStringArray = [];
-    stringArray.forEach(function(stringPart) {
-        if (stringPart != ""){
-            filteredStringArray.push(stringPart)
-        }
-    });
-
-    if(filteredStringArray.length == 1){
-        return filteredStringArray[0];
-    } else if(filteredStringArray.length == 2){
-        return filteredStringArray.join(" and ");
-    } else if(filteredStringArray.length > 2){
-        let lastString = filteredStringArray.pop();
-        let firstString = filteredStringArray.join(", ");
-        return firstString + ", and " + lastString; 
+function formatList(items) {
+    // Filter out empty strings
+    items = items.filter((item) => item.trim() !== "");
+  
+    // Concatenate the strings with "and" or commas depending on the length
+    if (items.length === 0) {
+      return "";
+    } else if (items.length === 1) {
+      return items[0];
+    } else if (items.length === 2) {
+      return `${items[0]} and ${items[1]}`;
     } else {
-        return ""; 
+      const lastItem = items.pop();
+      return `${items.join(", ")}, and ${lastItem}`;
     }
+  }
+
+
+function getCharacters(){
+    return [
+        State.variables.governor,
+        State.variables.guard,
+    ]
+}
+
+function getObjects(){
+    return []
 }
