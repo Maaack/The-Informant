@@ -17,12 +17,25 @@ function formatList(items) {
 
 
 function getCharacters(){
-    return [
-        State.variables.governor,
-        State.variables.guard,
-    ]
+  return [
+    State.variables.governor,
+    State.variables.guard,
+  ]
 }
 
-function getObjects(){
-    return []
+function getItemsAtLocation(location, sense){
+  let items = [];
+  items = items.concat(getCharacters());
+  items = items.filter((item) => item.location === location);
+  return items;
+}
+
+function getActivityOfItem(item, sense){
+  if (sense === "see"){
+    return item.seenString();
+  } else if (sense === "hear"){
+    return item.heardString();
+  } else {
+    return "";
+  }
 }

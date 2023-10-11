@@ -16,28 +16,19 @@ sense specified as the first argument.
       const sense = this.args.shift();
       const locations = this.args;
 
-      // Get the array of characters or objects, depending on the sense
-      let items;
-      if (sense === "see" || sense === "hear") {
-        items = getCharacters();
-      } else if (sense === "smell") {
-        items = getObjects();
-      } else {
-        return new Wikifier(this.output, `Invalid sense: ${sense}`);
-      }
-
       // Initialize the output string
       let output = "";
 
       // Check each location for the presence of a character or object
       locations.forEach((location) => {
-        // Check if any characters or objects are present at the location
-        const itemsAtLocation = items.filter((item) => item.location === location);
+        // Check if any characters or other sensory information are present at the location
+        const itemsAtLocation = getItemsAtLocation(location, sense);
 
-        // Add a message to the output string indicating the characters or objects present at the location
+        // Add a message to the output string indicating the items present at the location
         if (itemsAtLocation.length > 0) {
           const itemNames = itemsAtLocation.map((item) => item.getName());
-          output += `You ${sense} ${formatList(itemNames)} at ${location}.`;
+          const itemActivities = itemsAtLocation.map((item) => `${item.getName()} ${getActivityOfItem(item, sense)}`);
+          output += `You ${sense} ${formatList(itemNames)} at ${location}. ${formatList(itemActivities)}.`;
         }
       });
 

@@ -1,6 +1,6 @@
 /*
 Custom module for Twine 2 using the SugarCube story format.
-Given an input like <<see "Location 1" "Location 2" "Location 3">>,
+Given an input like <<detect "see" "Location 1" "Location 2" "Location 3">>,
 this module will check each location for the presence of a character from
 the array returned by getCharacters().
 */
@@ -8,7 +8,7 @@ the array returned by getCharacters().
 (function () {
     "use strict";
   
-    // Define the <<see>> macro
+    // Define the <<detect "see">> macro
     Macro.add("see", {
       handler() {
         // Get the list of locations to check
